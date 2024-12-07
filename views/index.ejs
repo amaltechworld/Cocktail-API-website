@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Website</title>
+    <link rel="stylesheet" href="/styles/output.css">
+</head>
+<body class="bg-[url('/src/cocktail-bg.jpg')] bg-cover bg-center h-screen">
+    <!--container-->
+    <div class="relative h-screen bg-black bg-opacity-15">
+
+        <!--search form-->
+        <div class="relative z-10">
+            <form action="/search" method="get" class="m-4 text-center">
+                <input type="text" name="search" placeholder="Enter your cocktail name" class="p-2 border-b-2 w-full md:w-1/2 rounded-sm">
+                <button type="submit" class="p-2 px-9 mx-8 bg-blue-700 text-white rounded-sm">Search</button>
+            </form>
+        </div>
+        <!--search form end-->
+
+        <div class="absolute inset-0 flex items-center justify-center z-0">
+            <div class="bg-white bg-opacity-85 w-3/4 h-3/4 rounded-xl shadow-2xl p-8">
+
+                <!-- after search-->
+                                    <% if (locals.searchContent) { %>
+                                        <!--img-->
+                                        <img src="<%= searchContent.strDrinkThumb %>" class="h-64 mx-auto rounded-sm" alt="image of <%= searchContent.strDrink %>">
+                                        <!--title-->
+                 <h1 class="text-blue-900 text-2xl font-semibold text-center mb-4">                        
+                    <%= searchContent.strDrink %>
+                </h1>
+                <!--ingredients-->
+                <p class="text-blue-900 text-2xl font-semibold mb-4">Ingredients:</p>
+                <ul class=" list-disc pl-5 mt-4">
+                <div class="grid grid-cols-4 gap-x-4 gap-y-2 text-blue-700 text-xl text-left">
+                    <% for (let i = 1; i <= 15; i++){ %>
+                            <% if (searchContent[`strIngredient${i}`]) {%>
+                                <li class="list-item ">
+                                    
+                                         <%= searchContent[`strIngredient${i}`] %> - <%= searchContent[`strMeasure${i}`] %>
+                                         
+                                 </li>
+                            <% } %>
+                        <% } %>
+                </div>
+                </ul>
+
+                <!--instructions-->
+                <p class="text-blue-900 text-2xl font-semibold mb-4">Instructions:</p>
+                
+                    <p class="text-blue-700 text-xl text-left"> 
+                       <%= searchContent.strInstructions %>
+                    </p>
+                    <% } else { %>
+                                    <!--head before search-->
+                <h1 class="text-blue-900 text-5xl font-bold text-center mb-8">
+                    Discover Your Next Favorite Cocktail Recipe Here!
+                </h1>
+                <img src="/src/cocktail_serving.jpg" class="h-96 mx-auto block rounded-lg" 
+                alt="cocktail_img">
+                        <% } %>      
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+    
+    
+</body>
+</html>

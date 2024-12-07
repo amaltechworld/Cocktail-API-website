@@ -1,0 +1,26 @@
+{
+  "name": "cocktail-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./public/styles/tailwind.css -o ./public/styles/output.css --watch",
+    "start": "concurrently \"nodemon index.js\" \"npm run build:css\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.7",
+    "tailwindcss": "^3.4.16"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "prettier": "^3.4.2"
+  }
+}
